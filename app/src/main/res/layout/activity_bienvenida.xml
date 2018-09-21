@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BienvenidaActivity"
+    android:background="#283593">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/sjl"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgLogo"
+        android:layout_centerHorizontal="true"
+        android:text="Continuar"
+        android:onClick="onContinuar"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imgLogo"
+        android:layout_centerHorizontal="true"
+        android:text="Seguridad Ciudadana"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:text="Municipalidad de San Juan de Lurigancho"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+</RelativeLayout>
