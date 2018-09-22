@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.user.proyecto_final.R;
 import com.example.user.proyecto_final.db.DbHelper;
@@ -140,14 +142,32 @@ public class TelefonoFragment extends Fragment {
                         Intent intent = new Intent(Intent.ACTION_CALL);
 
                         intent.setData(Uri.parse("tel:" + telefono));
-                        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+                        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            requestPermissions(
+                                    new String[]{Manifest.permission.CALL_PHONE},
+                                    1);
                             return;
-
+                        }
                         getContext().startActivity(intent);
                     }
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getContext(), "Bien :). Ahora inténtalo nuevamente", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "Que mal :(", Toast.LENGTH_LONG).show();
+                }
+            }
+            return;
+        }
+
     }
 
     private BaseAdapter getAdapter() {
