@@ -58,6 +58,7 @@ public class TelefonoFragment extends Fragment {
             }
         });
 
+        //Para eliminar el contacto
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -94,6 +95,7 @@ public class TelefonoFragment extends Fragment {
         return v;
     }
 
+    //Dialogo para crear un nuevo contacto
     private void showNewContactDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Nuevo Contacto");
@@ -131,6 +133,8 @@ public class TelefonoFragment extends Fragment {
         contactoEmergenciaDao = new ContactoEmergenciaDao(helper);
     }
 
+
+    //Dualogo cuando mantienes presionado un item para llamarlo
     private void showDialog(final String telefono) {
         new AlertDialog.Builder(getActivity())
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -139,9 +143,10 @@ public class TelefonoFragment extends Fragment {
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //Este es para llamar
                         Intent intent = new Intent(Intent.ACTION_CALL);
-
                         intent.setData(Uri.parse("tel:" + telefono));
+                        // Este if es para pedir permiso para llamar android 6.0 en adelante
                         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                             requestPermissions(
                                     new String[]{Manifest.permission.CALL_PHONE},
@@ -155,6 +160,8 @@ public class TelefonoFragment extends Fragment {
                 .show();
     }
 
+
+    //Aca llega la respuesta a la solicitud de permiso
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {

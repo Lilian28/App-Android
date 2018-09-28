@@ -28,7 +28,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    // Esta libnreria realiza la edicion de la foto
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+
+    //Estas librerias es para consumir el servicio REST
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 }

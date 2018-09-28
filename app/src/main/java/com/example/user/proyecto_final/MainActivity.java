@@ -1,14 +1,17 @@
 package com.example.user.proyecto_final;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.user.proyecto_final.adapter.PagerAdapter;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,8 +75,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Aca llega la imagen importada/creada desde la libreria de edicion de imagen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                Toast.makeText(this, "REQUEST IMAGE " + resultUri.getPath(), Toast.LENGTH_SHORT).show();
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Toast.makeText(this, "Error capturando la imagen :(", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 }

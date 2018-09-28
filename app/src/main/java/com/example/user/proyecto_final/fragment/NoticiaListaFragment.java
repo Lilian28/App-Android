@@ -74,7 +74,7 @@ public class NoticiaListaFragment extends Fragment {
         final String[] from = new String[]{"noticia"};
         final int[] to = new int[]{R.id.noticia};
 
-
+        //Inicializar retrofit para consumir el servicio web
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://aniux.dx.am/index.php/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -82,14 +82,14 @@ public class NoticiaListaFragment extends Fragment {
 
         final NoticiaService service = retrofit.create(NoticiaService.class);
 
-
+        //LLamando al servicio web de manera asincrona (por detras, en otro hilo)
         service.getNoticias().enqueue(new Callback<List<Noticia>>() {
             @Override
             public void onResponse(Call<List<Noticia>> call, Response<List<Noticia>> response) {
                 ArrayList<String[]> lista = new ArrayList<>();
 
                 for (Noticia noticia : response.body())
-                    lista.add(new String[]{noticia.getTitulo(),noticia.getDetalle()});
+                    lista.add(new String[]{noticia.getTitulo(), noticia.getDetalle()});
 
                 ArrayList<HashMap<String, String>> eventos = new ArrayList<>();
 

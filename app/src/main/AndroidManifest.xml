@@ -2,10 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.user.proyecto_final">
 
+    <!-- Permisor para llamar-->
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- Permisos para leer/Escribir en la memoria del telefono -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!-- Permisor para conectarse a internet (Servicio web) -->
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +33,7 @@
         <activity android:name=".RedesActivity" />
         <activity android:name=".LugaresActivity"></activity>
 
+        <!-- Activity de la libreria de edicion de imgen -->
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/>
     </application>
