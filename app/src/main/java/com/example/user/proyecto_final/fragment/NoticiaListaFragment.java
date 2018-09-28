@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.user.proyecto_final.R;
 import com.example.user.proyecto_final.model.Noticia;
@@ -106,7 +107,8 @@ public class NoticiaListaFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Noticia>> call, Throwable t) {
-
+                Log.e(getClass().getName(),"Error listando noticias",t);
+                Toast.makeText(getContext(), "No pude traer las noticias :( ", Toast.LENGTH_SHORT).show();
             }
         });
 
